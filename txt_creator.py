@@ -3,22 +3,27 @@
 def record_contact(dict):
     with open('contacts.txt','a') as file:
         for value in dict.values():
-            file.write(value+'\n')
+            file.write(value+';')
         file.write('\n')
 
 def read_contacts():
     with open('contacts.txt','r') as file:
         data = file.readlines()
-        return data
+        res=[]
+        for row in data:
+            new_row = row.rstrip('\n')
+            items = new_row.split(';')
+            for item in items:
+                res.append(item)
+        return res
 
 def find_contact(name):
     with open('contacts.txt', 'r') as file:
         list_lines = file.readlines()
-        split_list_lines = [list_lines[i:i+4] for i in range(0, len(list_lines),5)]
-        for i in split_list_lines:
-            if name+'\n' in i:
-                return i
-
+        for i in list_lines:
+            if name in i:
+                res = i.split(';')
+                return res
 
 
 #def delete_contact(del_con):
