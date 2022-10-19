@@ -1,5 +1,5 @@
 import view
-#import txt_creator as tc
+import txt_creator as tc
 import csv_creator as cc
 def start():
     action = view.get_type_action()
@@ -10,13 +10,13 @@ def start():
                          'Описание':' '}
         for key in dict_contacts.keys():
             dict_contacts[key] = view.get_info(key)
-        cc.record_contact(dict_contacts)
+        tc.record_contact(dict_contacts)
     elif action == 2:
-        data = cc.read_contacts()
+        data = tc.read_contacts()
         view.show_data(data)
     elif action == 3:
         last_name = view.get_last_name()
-        found_contact = cc.find_contact(last_name)
+        found_contact = tc.find_contact(last_name)
         view.show_data(found_contact)
     #elif action == 4:
         #del_con = view.get_del_con()
